@@ -1,0 +1,77 @@
+{% extends 'learn/base.html' %}
+
+{% block content %}
+    {% include 'learn/ad.html' %}
+
+    <h1>模板单一内容String</h1><br/>
+    {{ template_content }}
+
+
+    <h1>模板列表List</h1><br/>
+    {% for item in template_list %}
+        {{ item }} &nbsp;&nbsp;
+    {% endfor %}
+
+    <h1>模板字典Dict(方式一)</h1><br/>
+    站点：{{ template_dict.site }} &nbsp;&nbsp;内容：{{ template_dict.content }}
+
+    <h1>模板字典Dict(方式二)</h1><br/>
+    <p>{% for key, value in template_dict.items %}
+        {{ key }}&nbsp;对应的value&nbsp;{{ value }} <br/>
+    {% endfor %}</p>
+
+
+    <h1>模板if/else使用</h1><br/>
+
+    <!--
+        模板标签with，用来定义局部变量。
+        无法自定义全局的变量，只能从view中传入全局变量
+        赋值语句num="85" 的等号两边不能有空格
+    -->
+    {% with num=85 %}
+        <!-- 比较符号前后必须有至少一个空格！-->
+        {% if num >= 90 %}
+            成绩优秀，自强学堂你没少去吧！学得不错
+        {% elif num >= 80 %}
+            成绩良好
+        {% elif num >= 70 %}
+            成绩一般
+        {% elif num >= 60 %}
+            需要努力
+        {% else %}
+            不及格啊，大哥！多去自强学堂学习啊！
+        {% endif %}
+    {% endwith %}
+
+    <p>
+        <!-- 不是最后一项后面加逗号-->
+        {% for item in template_range %}
+            {% if not forloop.last %}
+                {{ item }},
+            {% else %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    </p>
+
+
+    <p>
+        <!-- 判断 'hello' 在不在List中-->
+        {% if 'hello' in template_range%}
+            我存在
+        {% else %}
+            不存在
+        {% endif %}
+    </p>
+
+    <h1>当列表中可能为空值时</h1><br/>
+    <ui>
+        {% for item in template_empty %}
+            <li>{{ item }}</li>
+        {% empty %}
+            <li>抱歉，列表为空</li>
+        {% endfor %}
+
+    </ui>
+
+{% endblock %}

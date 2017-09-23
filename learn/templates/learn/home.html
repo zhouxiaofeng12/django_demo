@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎光临首页</title>
+</head>
+<body>
+    <h1>This is home</h1><br/>
+
+    <a href="/add/?b=5">计算22+5</a>
+
+    <p>动态设置网页地址 使用&#123;% url &#x27;name&#x27; 参数 %&#125;</p>
+
+    <a href="{% url 'query' 6 %}">查询</a>
+
+    <!--使用as取别名（相当于定义到nq变量中,之后可以多次使用）-->
+    {% url 'new_query' 6 as nq %}
+
+    <a href="{{ nq }}">新查询</a><br/>
+
+    <a href="/template">模板页</a>
+</body>
+</html>

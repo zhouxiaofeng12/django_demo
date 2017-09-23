@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}默认标题{% endblock %} - Welcome!</title>
+</head>
+<body>
+    {% include 'learn/nav.html' %}
+
+    {% block content %}
+        <div>这里是默认内容，所有继承自这个模板的，若不覆盖则显示这里的默认内容</div>
+    {% endblock %}
+
+    {% include 'learn/bottom.html' %}
+
+    {% include 'learn/tongji.html' %}
+
+</body>
+</html>
