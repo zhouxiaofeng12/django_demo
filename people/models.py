@@ -15,4 +15,4 @@ class Person(models.Model):
         3.0以上使用def __str__(self)  类似于java的toString方法
     """
     def __str__(self):
-        return self.name
+        return self.name + str(self.age)

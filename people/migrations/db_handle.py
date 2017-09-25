@@ -36,6 +36,8 @@ def temp():
     from people.models import Person
     p = Person(name='wz', age=13)
     p.save()
+    p = Person(name='wz', age=23)
+    p.save()
     p = Person(name='wangshijie', age=23)
     p.save()
 
@@ -54,12 +56,23 @@ def people_person_get():
     # 获取name条件对象(不区分大小写)
     print(Person.objects.filter(name__iexact='wz'))
 
+    # 获取name条件对象(包含"wz"的人)
+    print(Person.objects.filter(name__icontains='wz'))
+
+    # 使用正则筛选条件
+    print(Person.objects.filter(name__regex='^wz'))
+    print(Person.objects.filter(name__iregex='^wz'))  # 加i表示忽视大小写
+
+    # 排除符合某条件的
+    print(Person.objects.exclude(name__iregex='^wz'))
+    print(Person.objects.filter(name__iregex='^wz').exclude(age=13))
+
     # 切片操作，获取前2个人
     print(Person.objects.all()[:2])
 
 
 if __name__ == '__main__':
     # people_person_create()
-    # temp()
+    temp()
     people_person_get()
     print('Done...')
