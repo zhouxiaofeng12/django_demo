@@ -40,5 +40,3 @@ forloop.first	            当遍历的元素为第一项时
 forloop.last	            当遍历的元素为最后一项时
 forloop.parentloop	        用在嵌套的 for 循环中，获取上一层 for 循环的 forloop
 
-
-test

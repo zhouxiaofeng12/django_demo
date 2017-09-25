@@ -42,7 +42,7 @@ MIDDLEWARE = [
 ]
 
 # 总的urls配置文件
-ROOT_URLCONF = 'mysite.urls'
+ROOT_URLCONF = 'django_demo.urls'
 
 # 模板配置
 TEMPLATES = [
