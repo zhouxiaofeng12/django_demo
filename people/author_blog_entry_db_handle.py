@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """
     数据库操作(Blog类\Author类\Entry类)
+        exists函数--是否存在
+        count函数--数据的数量
 
 """
 import os
@@ -13,42 +15,53 @@ django.setup()
 
 def people_blog_create():
     from people.models import Blog
+    if not Blog.objects.exists():
+        print('没有Entry数据')
+
     b = Blog(name='Beatles Blog', tagline='All the latest Beatles news.')
     b.save()
+
+    print('当前Entry数量为:' + str(Blog.objects.count()))
 
 
 def people_author_create():
     from people.models import Author
-    Author.objects.create(name="WeizhongTu", email="tuweizhong@163.com")
-    twz = Author(name="WeizhongTu", email="tuweizhong@163.com")
+    Author.objects.create(name='WeizhongTu', email='tuweizhong@163.com')
+    Author.objects.create(name='WeizhongTu', email='tuweizhong@163.com')
+    twz = Author(name='tu', email='222@163.com')
     twz.save()
-
-
-def people_entry_create():
-    from people.models import Entry
-    b = Entry(name='Beatles Blog', tagline='All the latest Beatles news.')
-    b.save()
+    twz1 = Author(name='zhou', email='444@163.com')
+    twz1.save()
+    twz2 = Author(name='wang', email='777@163.com')
+    twz2.save()
 
 
 # 查询方法
-def people_person_query():
-    from people.models import Entry
-    entry = Entry.objects.get(pk=1)
-    from people.models import Blog
-    cheese_blog = Blog.objects.get(name="Cheddar Talk")
-    entry.blog = cheese_blog
-    entry.save()
+def people_author_query():
+    from people.models import Author
+    print(Author.objects.all().filter(name='WeizhongTu')
+          .filter(email='666@163.com'))
+
+    print(Author.objects.all().order_by('name'))  # 按name升序
+    print(Author.objects.all().order_by('-name'))  # 按name降序
+
+    # 查询后两条数据
+    # print(Author.objects.all()[:-2])  # 不支持负索引 Negative indexing is not supported
+    print(Author.objects.reverse()[:2])
 
 
 # 删除方法
-def people_person_del():
-    from people.models import Person
-    # 删除某条数据 返回(该数据所在表中的位置, {所删数据})
-    print(Person.objects.filter(name='wz').delete())
-    # 删除所有 Person 记录
-    print(Person.objects.all().delete())
+def people_del():
+    from people.models import Blog
+    from people.models import Author
+    Blog.objects.all().delete()
+    Author.objects.all().delete()
 
 
 if __name__ == '__main__':
-    people_entry_create()
+    # people_del()
+    # people_blog_create()
+    # people_author_create()
+    people_author_query()
+
     print('Done...')
