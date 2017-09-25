@@ -19,7 +19,7 @@ Django 环境搭建
         python manage.py runserver ip:端口号
 
     五、数据库相关操作
-        python manage.py makemigrations # 创建migrations
+        python manage.py makemigrations # 创建migrations 用于将models中的类映射成表
         python manage.py migrate # 同步数据库
         python manage.py flush # 清空数据库
 

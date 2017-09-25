@@ -10,7 +10,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_demo.settings')
 django.setup()
 
 
-# 新建一个对象
+# QuerySet创建对象的方法
 def people_person_create():
     from people.models import Person
     # 第一种
