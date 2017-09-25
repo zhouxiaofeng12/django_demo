@@ -3,8 +3,11 @@ Django 环境搭建
         django-admin startproject project_name
 
     二、新建app(需要切换到project_name下)
+        cd project_name
         python manage.py startapp app_name
         [新定义的app加到settings.py中的INSTALL_APPS中]
+
+        一个项目一般包含多个应用，一个应用也可以用在多个项目中
 
     三、创建数据库表
         # 1. 创建更改的文件
@@ -15,8 +18,10 @@ Django 环境搭建
     四、使用开发服务器
         python manage.py runserver ip:端口号
 
-    五、清空数据库
-        python manage.py flush
+    五、数据库相关操作
+        python manage.py makemigrations # 创建migrations
+        python manage.py migrate # 同步数据库
+        python manage.py flush # 清空数据库
 
 ========================================================================================
 Django 模板查找机制
@@ -40,3 +45,4 @@ forloop.first	            当遍历的元素为第一项时
 forloop.last	            当遍历的元素为最后一项时
 forloop.parentloop	        用在嵌套的 for 循环中，获取上一层 for 循环的 forloop
 
+========================================================================================

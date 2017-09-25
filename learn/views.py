@@ -71,7 +71,6 @@ def template(request):
 
     # for循环
     lst = map(str, range(10))  # 一个长度为10的List
-    lst.append('hello')
     render_dict['template_range'] = lst
 
 

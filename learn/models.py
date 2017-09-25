@@ -1,3 +1,4 @@
 from django.db import models
-
-# Create your models here.
+"""
+    与数据库相关的
+"""
