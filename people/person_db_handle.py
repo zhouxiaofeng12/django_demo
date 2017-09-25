@@ -1,6 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-    数据库操作
+    数据库操作(person类)
+
+        all函数--全部
+        get函数--单个
+        filter函数--过滤多个
+        exclude函数--除此以外
+
+        create--创建
+        update--更新(仅用于多个)
+        delete--删除(一个或多个)
+
 """
 import os
 
@@ -14,6 +24,8 @@ django.setup()
 def people_person_create():
     from people.models import Person
     # 第一种
+    print(Person.objects.create(name='Zhoufeng', age=23))
+    print(Person.objects.create(name='Zhoufeng', age=24))
     print(Person.objects.create(name='Zhoufeng', age=25))
 
     # 第二种
@@ -32,6 +44,7 @@ def people_person_create():
     print(Person.objects.get_or_create(name='lalala', age=23))
 
 
+# 临时补充数据
 def temp():
     from people.models import Person
     p = Person(name='wz', age=13)
@@ -42,7 +55,14 @@ def temp():
     p.save()
 
 
-def people_person_get():
+"""
+    使用get时可能会报错,原因是存在符合条件的多个数据 不能使用get
+        people.models.MultipleObjectsReturned: get() returned more than one Person -- it returned 2!
+"""
+
+
+# 查询方法
+def people_person_query():
     from people.models import Person
     # 获取所有对象
     print(Person.objects.all())
@@ -71,8 +91,36 @@ def people_person_get():
     print(Person.objects.all()[:2])
 
 
+# 删除方法
+def people_person_del():
+    from people.models import Person
+    # 删除某条数据 返回(该数据所在表中的位置, {所删数据})
+    print(Person.objects.filter(name='wz').delete())
+    # 删除所有 Person 记录
+    print(Person.objects.all().delete())
+
+
+# 更新方法
+def people_person_update():
+    from people.models import Person
+
+    # 名称中包含"Zhoufeng"的都改成zhouxiaofeng (批量更新--filter)
+    Person.objects.filter(name__contains="Zhoufeng").update(name='zhouxiaofeng')
+
+    # 全数据更新--all
+    Person.objects.all().update(age=666)
+
+    # 单个更新(同新增)
+    p = Person.objects.get(name='wangshijie')
+    p.name = 'wsj'
+    p.age = 777
+    p.save()
+
+
 if __name__ == '__main__':
     # people_person_create()
-    temp()
-    people_person_get()
+    # temp()
+    people_person_del()
+    # people_person_update()
+    # people_person_query()
     print('Done...')
