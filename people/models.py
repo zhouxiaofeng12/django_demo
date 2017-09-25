@@ -37,15 +37,6 @@ class Blog(models.Model):
         return self.name
 
 
-# Author类，继承自models.Model
-class Author(models.Model):
-    name = models.CharField(max_length=50)
-    email = models.EmailField()
-
-    def __str__(self):
-        return str(self.name)+str(self.email)
-
-
 # Entry类，继承自models.Model
 class Entry(models.Model):
     blog = models.ForeignKey(Blog)  # 外键 用于关联Blog对象
@@ -53,10 +44,47 @@ class Entry(models.Model):
     body_text = models.TextField()
     pub_date = models.DateField()
     mod_date = models.DateField()
-    authors = models.ManyToManyField(Author)  # 多对多Author对象
     n_comments = models.IntegerField()
     n_pingbacks = models.IntegerField()
     rating = models.IntegerField()
 
     def __str__(self):
         return self.headline
+
+
+"""
+    一篇文章只有一个作者(Author)，
+    一个作者可以有多篇文章(Article)，
+    一篇文章可以有多个标签（Tag)
+"""
+
+
+# Author作者类，继承自models.Model
+class Author(models.Model):
+    name = models.CharField(max_length=50)
+    qq = models.CharField(max_length=10)
+    address = models.TextField()
+    email = models.EmailField()
+
+    def __str__(self):
+        return str(self.name) + str(self.email)
+
+
+# Article文章类，继承自models.Model
+class Article(models.Model):
+    title = models.CharField(max_length=50)
+    author = models.ForeignKey(Author)
+    content = models.TextField()
+    score = models.IntegerField()  # 文章的打分
+    tags = models.ManyToManyField('Tag')
+
+    def __str__(self):
+        return self.title
+
+
+# Tag标签类，继承自models.Model
+class Tag(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name

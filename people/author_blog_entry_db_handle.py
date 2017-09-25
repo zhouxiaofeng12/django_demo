@@ -61,7 +61,7 @@ def people_del():
 if __name__ == '__main__':
     # people_del()
     # people_blog_create()
-    # people_author_create()
+    people_author_create()
     people_author_query()
 
     print('Done...')

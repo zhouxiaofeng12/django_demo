@@ -118,9 +118,9 @@ def people_person_update():
 
 
 if __name__ == '__main__':
-    # people_person_create()
-    # temp()
-    people_person_del()
-    # people_person_update()
-    # people_person_query()
+    people_person_create()
+    temp()
+    # people_person_del()
+    people_person_update()
+    people_person_query()
     print('Done...')
