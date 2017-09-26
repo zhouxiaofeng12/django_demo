@@ -46,3 +46,11 @@ forloop.last	            当遍历的元素为最后一项时
 forloop.parentloop	        用在嵌套的 for 循环中，获取上一层 for 循环的 forloop
 
 ========================================================================================
+ 创建admin    python manage.py createsuperuser
+    账号:kuangye89757
+    邮箱:kuangye89757@163.com
+    密码:1234!@#$
+
+    之后会在auth_user表中插入数据
+
+
