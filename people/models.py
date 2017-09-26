@@ -73,10 +73,10 @@ class Author(models.Model):
 # Article文章类，继承自models.Model
 class Article(models.Model):
     title = models.CharField(max_length=50)
-    author = models.ForeignKey(Author)
+    author = models.ForeignKey(Author)  # 多对一
     content = models.TextField()
     score = models.IntegerField()  # 文章的打分
-    tags = models.ManyToManyField('Tag')
+    tags = models.ManyToManyField('Tag')  # 多对多
 
     def __str__(self):
         return str(self.title) + " / " + str(self.author)
