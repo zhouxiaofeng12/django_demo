@@ -67,7 +67,7 @@ class Author(models.Model):
     email = models.EmailField()
 
     def __str__(self):
-        return str(self.name) + str(self.email)
+        return str(self.name) + " / " + str(self.email)
 
 
 # Article文章类，继承自models.Model
@@ -79,7 +79,7 @@ class Article(models.Model):
     tags = models.ManyToManyField('Tag')
 
     def __str__(self):
-        return self.title
+        return str(self.title) + " / " + str(self.author)
 
 
 # Tag标签类，继承自models.Model

@@ -16,8 +16,13 @@ import os
 
 import django
 
+"""
+    Django 版本大于等于1.7的时候，需要加上下面两句
+        否则会抛出错误 django.core.exceptions.AppRegistryNotReady: Models aren't loaded yet.
+"""
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_demo.settings')
-django.setup()
+if django.VERSION >= (1, 7):  # 自动判断版本
+    django.setup()
 
 
 # QuerySet创建对象的方法
