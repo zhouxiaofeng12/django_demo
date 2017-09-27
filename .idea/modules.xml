@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/django_demo.iml" filepath="$PROJECT_DIR$/.idea/django_demo.iml" />
+      <module fileurl="file://C:\Users\shijie9\AppData\Local\Programs\Python\Python36\Lib\site-packages\Django-1.11.5-py3.6.egg\django\bin\django_demo\.idea\mysite.iml" filepath="C:\Users\shijie9\AppData\Local\Programs\Python\Python36\Lib\site-packages\Django-1.11.5-py3.6.egg\django\bin\django_demo\.idea\mysite.iml" />
+    </modules>
+  </component>
+</project>

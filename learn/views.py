@@ -73,11 +73,4 @@ def template(request):
     lst = map(str, range(10))  # 一个长度为10的List
     render_dict['template_range'] = lst
 
-
     return render(request, 'learn/template.html', render_dict)
-
-
-
-
-
-

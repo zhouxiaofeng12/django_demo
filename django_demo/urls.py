@@ -8,7 +8,7 @@ from django.conf.urls import url
 from django.contrib import admin
 
 urlpatterns = [
-    # http://127.0.0.1:8000
+    # http://127.0.0.1:8000/
     url(r'^$', learn_views.index),
 
     # http://127.0.0.1:8000/home
