@@ -12,6 +12,7 @@
 
 """
 from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
 
 
 # 新建了一个Person类，继承自models.Model
@@ -60,14 +61,22 @@ class Entry(models.Model):
 
 
 # Author作者类，继承自models.Model
+@python_2_unicode_compatible
 class Author(models.Model):
     name = models.CharField(max_length=50)
     qq = models.CharField(max_length=10)
     address = models.TextField()
     email = models.EmailField()
 
-    def __str__(self):
-        return str(self.name) + " / " + str(self.email)
+    def my_property(self):
+        return self.name + '===' + self.qq + '===' + self.address + '===' + self.email
+
+    my_property.short_description = "Full name of the person"
+
+    full_name = property(my_property)
+
+    # def __str__(self):
+    #     return str(self.name) + " / " + str(self.email)
 
 
 # Article文章类，继承自models.Model

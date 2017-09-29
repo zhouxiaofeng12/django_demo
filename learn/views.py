@@ -25,10 +25,19 @@ def home(request):
 
 # 加法
 def add(request):
-    a = request.POST.get('a', '22')  # 无论有没有传递a 默认都为22
+    a = request.GET.get('a', '22')  # 无论有没有传递a 默认都为22
     b = request.GET['b']  # request.GET 类似于一个字典
     c = int(a) + int(b)
     return HttpResponse(str(c))
+
+
+# 通过表单调用
+def add_form(request):
+    a = request.GET['a']
+    b = request.GET['b']
+    a = int(a)
+    b = int(b)
+    return HttpResponse(str(a + b))
 
 
 # 查询第几页

@@ -17,6 +17,9 @@ urlpatterns = [
     # http://127.0.0.1:8000/add/?b=5
     url(r'^add/$', learn_views.add),
 
+    # 使用form表单
+    url(r'^add_form/$', learn_views.add_form),
+
     # 这里的name对应页面的 {% url 'name' 参数 %} 中的name
     url(r'^query/(\d+)/$', learn_views.query, name='query'),
 

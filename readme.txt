@@ -46,26 +46,46 @@ forloop.last	            当遍历的元素为最后一项时
 forloop.parentloop	        用在嵌套的 for 循环中，获取上一层 for 循环的 forloop
 
 ========================================================================================
- 创建admin    python manage.py createsuperuser
-    账号:shijie9
-    邮箱:kuangye89757@163.com
-    密码:1234!@#$
+Django的admin功能
+
+ 一、创建admin    python manage.py createsuperuser
+        账号:shijie9
+        邮箱:kuangye89757@163.com
+        密码:1234!@#$
 
     之后会在auth_user表中插入数据
 
-
-进入people文件夹修改admin.py（如果没有新建一个）内容如下;
+ 二、进入people文件夹修改admin.py（如果没有新建一个）内容如下;
     from django.contrib import admin
     from .models import Article
 
     admin.site.register(Article)
 
-之后访问http://localhost:8000/admin/
+ 三、之后访问http://localhost:8000/admin/
+        User中添加新用户(普通用户) 并根据需要设置权限 (这里同时选中staff status否则无法访问admin页)
+            账号:12@163.com
+            密码:zhoufeng666
 
- 点击Home › People › Articles › ADD ARTICLE
+ 四、点击Home › People › Articles › ADD ARTICLE
     强大的后台会根据我们定义在models.py的Article类创建对应的界面
 
 
-    通过admin.py中
-         admin.site.register(Model类名) 页面则显示相应的数据
+ 五、通过admin.py中
+        admin.site.register(Model类名) 页面则显示相应的数据
 
+ 六、在model上添加注解标签@python_2_unicode_compatible 用来兼容python2和3
+
+    栗子：
+
+        from django.utils.encoding import python_2_unicode_compatible
+
+
+        @python_2_unicode_compatible
+        class Author(models.Model):
+            name = models.CharField(max_length=50)
+            qq = models.CharField(max_length=10)
+            address = models.TextField()
+            email = models.EmailField()
+
+            def __str__(self):
+                return str(self.name) + " / " + str(self.email)
