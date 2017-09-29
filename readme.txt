@@ -13,7 +13,7 @@ Django 环境搭建
         # 1. 创建更改的文件
         python manage.py makemigrations
         # 2. 将生成的py文件应用到数据库
-        python manage.py migrate
+
 
     四、使用开发服务器
         python manage.py runserver ip:端口号
@@ -47,10 +47,25 @@ forloop.parentloop	        用在嵌套的 for 循环中，获取上一层 for �
 
 ========================================================================================
  创建admin    python manage.py createsuperuser
-    账号:kuangye89757
+    账号:shijie9
     邮箱:kuangye89757@163.com
     密码:1234!@#$
 
     之后会在auth_user表中插入数据
 
+
+进入people文件夹修改admin.py（如果没有新建一个）内容如下;
+    from django.contrib import admin
+    from .models import Article
+
+    admin.site.register(Article)
+
+之后访问http://localhost:8000/admin/
+
+ 点击Home › People › Articles › ADD ARTICLE
+    强大的后台会根据我们定义在models.py的Article类创建对应的界面
+
+
+    通过admin.py中
+         admin.site.register(Model类名) 页面则显示相应的数据
 
