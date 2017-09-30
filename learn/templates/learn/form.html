@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单实例</title>
+</head>
+<body>
+
+    <p>请输入两个数字(get方式)</p>
+    <form action="/add_form/" method="get">
+        a: <input type="text" name="a"> <br>
+        b: <input type="text" name="b"> <br>
+
+        <input type="submit" value="提交">
+    </form>
+
+
+    <p>请输入两个数字(post方式)</p>
+    <form action="/add_form/" method="post">
+        {% csrf_token %}
+        {{ form_info }}
+        <input type="submit" value="提交">
+    </form>
+</body>
+</html>

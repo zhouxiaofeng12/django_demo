@@ -9,6 +9,7 @@ from django.shortcuts import render
 
 # 首页
 from django.urls import reverse
+from learn.forms import AddForm
 
 
 def index(request):
@@ -29,15 +30,6 @@ def add(request):
     b = request.GET['b']  # request.GET 类似于一个字典
     c = int(a) + int(b)
     return HttpResponse(str(c))
-
-
-# 通过表单调用
-def add_form(request):
-    a = request.GET['a']
-    b = request.GET['b']
-    a = int(a)
-    b = int(b)
-    return HttpResponse(str(a + b))
 
 
 # 查询第几页
@@ -83,3 +75,26 @@ def template(request):
     render_dict['template_range'] = lst
 
     return render(request, 'learn/template.html', render_dict)
+
+
+# 表单页
+def form(request):
+    form_info = AddForm()
+    return render(request, 'learn/form.html', {'form_info': form_info})
+
+
+# 通过表单调用
+def add_form(request):
+    if request.method == 'POST':
+        # post方式
+        form_param = AddForm(request.POST)  # form 包含提交的数据
+        if form_param.is_valid():  # 如果提交的数据合法
+            a = form_param.cleaned_data['a']
+            b = form_param.cleaned_data['b']
+            return HttpResponse('This is post method '+str(int(a) + int(b)))
+
+    elif request.method == 'GET':
+        # get方式
+        a = request.GET['a']
+        b = request.GET['b']
+        return HttpResponse('This is get method '+str(int(a) + int(b)))

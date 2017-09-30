@@ -9,14 +9,6 @@
 
     <a href="/add/?b=5">计算22+5</a>
 
-    <p>请输入两个数字</p>
-    <form action="/add_form/" method="get">
-        a: <input type="text" name="a"> <br>
-        b: <input type="text" name="b"> <br>
-
-        <input type="submit" value="提交">
-    </form>
-
     <p>动态设置网页地址 使用&#123;% url &#x27;name&#x27; 参数 %&#125;</p>
 
     <a href="{% url 'query' 6 %}">查询</a>
@@ -26,6 +18,7 @@
 
     <a href="{{ nq }}">新查询</a><br/>
 
-    <a href="/template">模板页</a>
+    <a href="/template">模板页</a><br/>
+    <a href="/form">表单页</a>
 </body>
 </html>
