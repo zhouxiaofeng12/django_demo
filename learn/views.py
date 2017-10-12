@@ -9,7 +9,8 @@ from django.shortcuts import render
 
 # 首页
 from django.urls import reverse
-from learn.forms import AddForm
+from learn.forms import AddForm, AddTestForm
+from people.models import Blog
 
 
 def index(request):
@@ -22,6 +23,10 @@ def home(request):
         使用render时，Django会自动找到settings.py的INSTALLED_APPS所列出的各个app下templates中的文件
     """
     return render(request, 'learn/home.html')
+
+
+def test(request):
+    return render(request, 'learn/test.html')
 
 
 # 加法
@@ -91,10 +96,27 @@ def add_form(request):
         if form_param.is_valid():  # 如果提交的数据合法
             a = form_param.cleaned_data['a']
             b = form_param.cleaned_data['b']
-            return HttpResponse('This is post method '+str(int(a) + int(b)))
+            return HttpResponse('This is post method ' + str(int(a) + int(b)))
 
     elif request.method == 'GET':
         # get方式
         a = request.GET['a']
         b = request.GET['b']
-        return HttpResponse('This is get method '+str(int(a) + int(b)))
+        return HttpResponse('This is get method ' + str(int(a) + int(b)))
+
+
+def test_form(request):
+    form_param = AddTestForm(request.POST)  # form 包含提交的数据
+    if form_param.is_valid():  # 如果提交的数据合法
+        name = form_param.cleaned_data['name']
+        tag_line = form_param.cleaned_data['tag_line']
+        b = Blog(name=name, tagline=tag_line)
+        b.save()
+        return HttpResponse('保存成功~!' + str(name) + str(tag_line))
+
+
+# 查询blog表的数据
+def query_blog_info(request):
+    render_dict = {}
+    render_dict['blog_info'] = Blog.objects.all()
+    return render(request, 'learn/blog_info.html', render_dict)

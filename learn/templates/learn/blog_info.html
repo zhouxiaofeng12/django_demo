@@ -1,0 +1,16 @@
+{% extends 'learn/base.html' %}
+
+{% block content %}
+    {% include 'learn/ad.html' %}
+
+    <h1>blog表的数据</h1><br/>
+    <ui>
+        {% for item in blog_info %}
+            <li>name为:{{ item.name  }} , tagline为:{{ item.tagline }}</li>
+        {% empty %}
+            <li>抱歉，列表为空</li>
+        {% endfor %}
+
+    </ui>
+
+{% endblock %}

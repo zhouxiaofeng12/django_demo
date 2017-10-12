@@ -8,6 +8,8 @@
         exclude函数--除此以外
 
         create--创建
+        get_or_create--避免重复创建
+        bulk_create--批量创建
         update--更新(仅用于多个)
         delete--删除(一个或多个)
 
@@ -28,7 +30,7 @@ if django.VERSION >= (1, 7):  # 自动判断版本
 # QuerySet创建对象的方法
 def people_person_create():
     from people.models import Person
-    # 第一种
+    # 第一种 自动保存
     print(Person.objects.create(name='Zhoufeng', age=23))
     print(Person.objects.create(name='Zhoufeng', age=24))
     print(Person.objects.create(name='Zhoufeng', age=25))
@@ -46,7 +48,7 @@ def people_person_create():
       第四种(防止重复 返回一个元组，第一个为Person对象 第二个为True或False 即已经存在时返回False)
             (<Person: lalala>, True)
     """
-    print(Person.objects.get_or_create(name='lalala', age=23))
+    # print(Person.objects.get_or_create(name='lalala', age=23))
 
 
 # 临时补充数据
@@ -122,10 +124,25 @@ def people_person_update():
     p.save()
 
 
+# 批量导入表 (将import_blob_table.txt文本中的内容批量导入表内)
+def batch_blog_info():
+    from people.models import Blog
+    from django.conf import settings
+    f = open(settings.BASE_DIR + '\import_blob_table.txt')
+    blog_list = []
+    for line in f:
+        parts = line.split('****')
+        blog_list.append(Blog(name=parts[0], tagline=parts[1]))
+    f.close()
+
+    Blog.objects.bulk_create(blog_list)
+
+
 if __name__ == '__main__':
-    people_person_create()
-    temp()
+    # people_person_create()
+    # temp()
     # people_person_del()
-    people_person_update()
-    people_person_query()
+    # people_person_update()
+    # people_person_query()
+    batch_blog_info()
     print('Done...')

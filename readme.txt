@@ -5,6 +5,7 @@ Django 环境搭建
     二、新建app(需要切换到project_name下)
         cd project_name
         python manage.py startapp app_name
+        django-admin.py startapp app_name
         [新定义的app加到settings.py中的INSTALL_APPS中]
 
         一个项目一般包含多个应用，一个应用也可以用在多个项目中

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试页面</title>
+</head>
+<body>
+    <h1>This is test</h1><br/>
+    <form action="/test_form/" method="post">
+        {% csrf_token %}
+        <div>
+            <label class="required" for="id_name">Name:</label>
+            <input type="text" name="name" maxlength="30" required="" id="id_name">
+        </div><br/>
+        <div>
+            <label class="required" for="id_tag_line">Age:</label>
+            <input type="text" name="tag_line" required="" id="id_tag_line">
+        </div><br/>
+
+        <input type="submit" value="Save" name="_save">
+    </form>
+
+
+    <a href="/blog_info">查询blog</a><br/>
+</body>
+</html>

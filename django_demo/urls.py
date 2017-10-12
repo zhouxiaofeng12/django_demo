@@ -33,4 +33,12 @@ urlpatterns = [
 
     # http://127.0.0.1:8000/admin/
     url(r'^admin/', admin.site.urls),
+
+
+    # http://127.0.0.1:8000/test
+    url(r'^test/$', learn_views.test),
+    url(r'^test_form/$', learn_views.test_form),
+
+    # http://127.0.0.1:8000/blog_info
+    url(r'^blog_info/$', learn_views.query_blog_info),
 ]

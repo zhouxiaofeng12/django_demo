@@ -9,6 +9,8 @@
                 再调用python manage.py migrate # 同步数据库
                 相应的会在migrations文件夹中生成建表语句
 
+                会根据appname_classname 生成表名
+
 
 """
 from django.db import models

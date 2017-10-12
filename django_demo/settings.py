@@ -5,8 +5,13 @@
 
 import os
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+"""
+    __file__变量在python中可以获取到当前文件的路径
+    os.path.abspath(__file__)得到文件所在目录
+    os.path.dirname()目录的上一级
+"""
+# 项目所在目录
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -18,6 +23,7 @@ SECRET_KEY = 'c@!s7fx-o6-^h1_zxp)2i#y9y*e0o+9=zc7)0trfur=&*r@^s&'
 # DEBUG=True时，Django自动找到各app下static文件夹下的静态文件（js，css，图片等资源）
 DEBUG = True
 
+# 允许访问的域名 这里设置全部
 ALLOWED_HOSTS = ['*']
 
 # 项目下的子app
@@ -49,7 +55,7 @@ ROOT_URLCONF = 'django_demo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [],  # 用于存放模板文件的目录
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -105,7 +111,14 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
+# Static files (js, css, 图片，视频)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 # 静态文件目录
+# 打开服务器直接访问/static/m5ot3hbnhqe.jpg
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# jquery.js放在 common_static/js/下，这样就可以 在 /static/js/jquery.js 中访问到它
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "common_static"),
+)
